@@ -27,12 +27,13 @@
 <!--Internal Fileuploads js-->
 <script src="{{asset('/')}}admin/assets/fileuploads/js/fileupload.js"></script>
 <script src="{{asset('/')}}admin/assets/fileuploads/js/file-upload.js"></script>
+<script src="{{asset('/')}}admin/assets/js/plugins/bootstrap-switch-button.min.js"></script>
 <!-- Summernote -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
 <script>
   $(document).ready(function() {
       $('#summernote').summernote({
-          height: 300,
+          height: 100,
       });
   });
 </script>
@@ -76,6 +77,34 @@
      ]
    });
 
+</script>
+<script>
+  (function () {
+    var switch_event = document.querySelector('#switch_event');
+    switch_event.addEventListener('change', function () {
+      if (switch_event.checked) {
+        document.querySelector('#console_event').innerHTML = 'Switch Button Checked';
+      } else {
+        document.querySelector('#console_event').innerHTML = 'Switch Button Unchecked';
+      }
+    });
+  })();
+</script>
+{{-- for add More image --}}
+<script>
+  $(document).ready(function() {
+    var i = 1;
+    $('#add').click(function() {
+      i++;
+      $('#dynamicTable').append(
+        '<tr id="row' + i + '"><td><input type="file" accept="image/*" name="images[]" class="form-control name_list"></td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">X</button></td></tr>');
+    });
+
+    $(document).on('click', '.btn_remove', function() {
+      var button_id = $(this).attr("id");
+      $('#row' + button_id).remove();
+    });
+  });
 </script>
 <!-- [Page Specific JS] end -->
 <script>

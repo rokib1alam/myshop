@@ -73,6 +73,7 @@
                                     <button class="btn btn-primary">Create Page</button>
                                 </div>
                             </div>
+
                         </form>
                     </div>
                   </div>

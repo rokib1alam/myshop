@@ -18,7 +18,8 @@
 <link rel="stylesheet" href="{{asset('/')}}admin/assets/css/plugins/dataTables.bootstrap5.min.css">
 <link rel="stylesheet" href="{{asset('/')}}admin/assets/css/plugins/buttons.bootstrap5.min.css">
 <!-- fileupload-custom css -->
-<link rel="stylesheet" href="{{asset('/')}}admin/assets/css/plugins/dropzone.min.css"><!-- [Page specific CSS] end -->
+<link rel="stylesheet" href="{{asset('/')}}admin/assets/css/plugins/dropzone.min.css">
+<link rel="stylesheet" href="{{asset('/')}}admin/assets/css/plugins/bootstrap-switch-button.min.css"><!-- [Page specific CSS] -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
