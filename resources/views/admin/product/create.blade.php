@@ -40,7 +40,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Product Name <sup class="text-size-20 top-1">*</sup></label>
                                         <div class="input-group">
-                                            <input id="page_name" type="text" name="page_name" class="form-control" placeholder="Page Name">
+                                            <input id="name" type="text" name="name" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Product Code <sup class="text-size-20 top-1">*</sup></label>
                                         <div class="input-group">
-                                            <input id="page_name" type="text" name="page_name" class="form-control" placeholder="Page Name">
+                                            <input id="code" type="text" name="code" class="form-control" required placeholder="Product Code">
                                         </div>
                                     </div>
                                 </div>
@@ -56,10 +56,17 @@
                                     <div class="mb-3">
                                         <label class="form-label">Category/Subcategory <sup class="text-size-20 top-1">*</sup></label>
                                         <div class="input-group">
-                                            <select name="page_position" class="form-control">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                            </select>
+                                            <select class="form-control" name="subcategory_id" id="" required>
+                                                <option disabled="" selected="">==choose category==</option>
+                                                @foreach ($categories as $category)
+                                                  <option value="{{$category->id}}" style="color: blue" disabled="">{{$category->category_name}}</option>
+                                                  @foreach ($subcategories as $subcategory)
+                                                    @if ($subcategory->category_id == $category->id)
+                                                        <option value="{{$subcategory->id}}">---- {{$subcategory->subcategory_name}}</option>
+                                                    @endif
+                                                  @endforeach
+                                                @endforeach
+                                              </select>
                                         </div>
                                     </div>
                                 </div>
@@ -67,9 +74,8 @@
                                     <div class="mb-3">
                                         <label class="form-label">Child Category <sup class="text-size-20 top-1">*</sup></label>
                                         <div class="input-group">
-                                            <select name="page_position" class="form-control">
+                                            <select name="childcategory_id" class="form-control">
                                                 <option value="1">1</option>
-                                                <option value="2">2</option>
                                             </select>
                                         </div>
                                     </div>
@@ -78,9 +84,10 @@
                                     <div class="mb-3">
                                         <label class="form-label">Brand <sup class="text-size-20 top-1">*</sup></label>
                                         <div class="input-group">
-                                            <select name="page_position" class="form-control">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
+                                            <select name="brand_id" class="form-control">
+                                                @foreach ($brands as $brand)
+                                                    <option value="{{$brand->id}}">{{$brand->brand_name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -89,9 +96,10 @@
                                     <div class="mb-3">
                                         <label class="form-label">Pickup Point</label>
                                         <div class="input-group">
-                                            <select name="page_position" class="form-control">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
+                                            <select name="pickup_point_id" class="form-control">
+                                                @foreach ($pickpuppoints as $pickpuppoint)
+                                                    <option value="{{$pickpuppoint->id}}">{{$pickpuppoint->pickup_point_name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -100,26 +108,21 @@
                                     <div class="mb-3">
                                         <label class="form-label">Unit <sup class="text-size-20 top-1">*</sup></label>
                                         <div class="input-group">
-                                            <select name="page_position" class="form-control">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                            </select>
+                                            <input type="text" class="form-control" name="unit" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Tags</label>
-                                        <div class="input-group">
-                                            <input id="page_title" type="text" name="page_title" class="form-control" placeholder="Page Title">
-                                        </div>
+                                        <input type="text" name="tags" class="form-control" data-role="tagsinput">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Purchase Price</label>
                                         <div class="input-group">
-                                            <input id="page_title" type="text" name="page_title" class="form-control" placeholder="Page Title">
+                                            <input id="purchase_price" type="text" name="purchase_price" class="form-control" placeholder="Purchase Price">
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +130,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Selling Price <sup class="text-size-20 top-1">*</sup></label>
                                         <div class="input-group">
-                                            <input id="page_title" type="text" name="page_title" class="form-control" placeholder="Page Title">
+                                            <input id="selling_price" type="text" name="selling_price" class="form-control" required placeholder="Selling Price">
                                         </div>
                                     </div>
                                 </div>
@@ -143,9 +146,10 @@
                                     <div class="mb-3">
                                         <label class="form-label">Warehouse <sup class="text-size-20 top-1">*</sup></label>
                                         <div class="input-group">
-                                            <select name="page_position" class="form-control">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
+                                            <select name="warehouse" class="form-control">
+                                                @foreach ($warehouses as $warehouse)
+                                                <option value="{{$warehouse->id}}">{{$warehouse->warehouse_name}}</option>
+                                            @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -154,39 +158,35 @@
                                     <div class="mb-3">
                                         <label class="form-label">Stock</label>
                                         <div class="input-group">
-                                            <input id="page_title" type="text" name="page_title" class="form-control" placeholder="Page Title">
+                                            <input id="stock_quantity" type="text" name="stock_quantity" class="form-control" >
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">color</label>
-                                        <div class="input-group">
-                                            <input id="page_title" type="text" name="page_title" class="form-control" placeholder="Page Title">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="demo-color-input" class="form-label">Color</label>
+                                            <input class="form-control form-control-color-picker" name="color" type="color" value="#5052FC" id="demo-color-input">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="form-label">Size</label>
+                                            <input id="size" type="text" name="size" class="form-control" data-role="tagsinput">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
 
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="mb-3">
-                                        <label class="form-label">Size</label>
-                                        <div class="input-group">
-                                            <input id="page_title" type="text" name="page_title" class="form-control" placeholder="Page Title">
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label">Page Details</label>
-                                        <textarea class="form-control textarea" name="page_description" id="summernote" rows="4" ></textarea> 
+                                        <textarea class="form-control textarea" name="description" id="summernote" rows="4" ></textarea> 
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label">Video Embed Code</label>
-                                        <textarea class="form-control textarea" name="page_description"  rows="2" ></textarea>
+                                        <textarea class="form-control textarea" name="video"  rows="2" ></textarea>
                                     </div>
                                 </div>
                                 {{-- <div class="col-md-12 text-end">

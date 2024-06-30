@@ -1,4 +1,7 @@
-<link rel="icon" href="http://html.phoenixcoded.net/flatable/assets/images/favicon.svg" type="image/x-icon">
+@php
+    $setting = App\Models\Setting::first();
+@endphp
+<link rel="icon" href="{{ url($setting->favicon) }}" type="image/x-icon">
 <!-- [Google Font : Public Sans] icon -->
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&amp;display=swap"
     rel="stylesheet"><!-- [Tabler Icons] https://tablericons.com -->

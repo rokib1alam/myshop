@@ -36,8 +36,6 @@ return new class extends Migration
             $table->integer('featured')->nullable;
             $table->integer('today_deal')->nullable;
             $table->integer('status')->nullable;
-            $table->integer('flash_deal_id')->nullable;
-            $table->integer('cash_on_delivery')->nullable;
             $table->integer('admin_id')->nullable;
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');

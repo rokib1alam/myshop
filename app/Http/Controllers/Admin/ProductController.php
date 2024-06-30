@@ -7,6 +7,8 @@ use App\Models\Brand;
 use App\Models\categorie;
 use App\Models\pickup;
 use App\Models\product;
+use App\Models\subcategorie;
+use App\Models\warehouse;
 use Flasher\Toastr\Prime\ToastrInterface;
 use Illuminate\Http\Request;
 
@@ -31,10 +33,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $category=categorie::all();
-        $brand=Brand::all();
-        $pickpuppoint=pickup::all();
-        return view('admin.product.create', compact('category','brand','pickpuppoint'));
+        $categories=categorie::all();
+        $subcategories = subcategorie::all();
+        $brands=Brand::all();
+        $pickpuppoints=pickup::all();
+        $warehouses=warehouse::all();
+        return view('admin.product.create', compact('categories','brands','pickpuppoints','subcategories', 'warehouses'));
     }
 
     /**
