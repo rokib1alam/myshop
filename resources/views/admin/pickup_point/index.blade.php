@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Coupon')
+@section('title','Pickup_points')
 @section('admin_content')
 <div class="pc-container">
     <div class="pc-content">
@@ -9,7 +9,7 @@
                 <div class="row align-items-center justify-content-between">
                     <div class="col-sm-auto">
                         <div class="page-header-title">
-                            <h5 class="mb-0">Coupon</h5>
+                            <h5 class="mb-0">Pickup Point</h5>
                         </div>
                     </div>
                     <div class="col-sm-auto">
@@ -27,7 +27,7 @@
         <div class="col-sm-12">
           <div class="card">
             <div class="card-header table-card-header">
-              <h5>Coupon list here</h5>
+              <h5>Pickup Point list here</h5>
             </div>
             <div class="card-body">
               <div class="dt-responsive table-responsive">
@@ -35,10 +35,10 @@
                   <thead>
                     <tr>
                       <th>SL</th>
-                      <th>Coupon Code</th>
-                      <th>Coupon Amount</th>
-                      <th>Coupon Date</th>
-                      <th>Status</th>
+                      <th>Pickup Point</th>
+                      <th>Address</th>
+                      <th>Phone</th>
+                      <th>Another Phone</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -48,10 +48,10 @@
                   <tfoot>
                     <tr>
                       <th>SL</th>
-                      <th>Coupon Code</th>
-                      <th>Coupon Amount</th>
-                      <th>Coupon Date</th>
-                      <th>Status</th>
+                      <th>Pickup Point</th>
+                      <th>Address</th>
+                      <th>Phone</th>
+                      <th>Another Phone</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
@@ -70,39 +70,28 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title h4" id="myLargeModalLabel">Add New Coupon</h5>
+                <h5 class="modal-title h4" id="myLargeModalLabel">Add New Pickup Point</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{ route('coupon.store') }}" method="post" id="add-form">
+            <form action="{{ route('pickuppoint.store') }}" method="post" id="add-form">
               @csrf
               <div class="modal-body">
                   <div class="form-group">
-                      <label for="coupon_code" class="col-form-label pt-0">Coupon Code <sup class="text-size-20 top-1">*</sup></label>
-                      <input type="text" class="form-control" id="coupon_code" name="coupon_code" required placeholder="Coupon Code">
+                      <label for="pickup_point_name" class="col-form-label pt-0">Pickup Point <sup class="text-size-20 top-1">*</sup></label>
+                      <input type="text" class="form-control" id="pickup_point_name" name="pickup_point_name" required placeholder="Pickup Poin Name">
                   </div>
                   <div class="form-group">
-                      <label for="type" class="col-form-label pt-0">Coupon Type <sup class="text-size-20 top-1">*</sup></label>
-                      <select name="type" class="form-control">
-                          <option value="1">Fixed</option>
-                          <option value="2">Percentage</option>
-                      </select>
+                      <label for="pickup_point_address" class="col-form-label pt-0">Address <sup class="text-size-20 top-1">*</sup></label>
+                      <input type="text" class="form-control" id="pickup_point_address" name="pickup_point_address" required placeholder="Address">
                   </div>
                   <div class="form-group">
-                      <label for="coupon_amount" class="col-form-label pt-0">Amount <sup class="text-size-20 top-1">*</sup></label>
-                      <input type="text" class="form-control" id="coupon_amount" name="coupon_amount" required placeholder="Coupon Code">
+                      <label for="pickup_point_phone" class="col-form-label pt-0">Phone<sup class="text-size-20 top-1">*</sup></label>
+                      <input type="text" class="form-control" id="pickup_point_phone" name="pickup_point_phone" required placeholder="Phone">
                   </div>
                   <div class="form-group">
-                      <label for="valid_date" class="col-form-label pt-0">Valid Date <sup class="text-size-20 top-1">*</sup></label>
-                      <input type="date" class="form-control" id="valid_date" name="valid_date" required placeholder="Coupon Code">
+                      <label for="pickup_point_phone_two" class="col-form-label pt-0">Another Phone<sup class="text-size-20 top-1">*</sup></label>
+                      <input type="text" class="form-control" id="pickup_point_phone_two" name="pickup_point_phone_two" required placeholder="Another Phone">
                   </div>
-                  <div class="form-group">
-                      <label for="type" class="col-form-label pt-0">Coupon Status <sup class="text-size-20 top-1">*</sup></label>
-                      <select name="status" class="form-control">
-                          <option value="Active">Active</option>
-                          <option value="Inactive">Inactive</option>
-                      </select>
-                  </div>
-                  
                   <div class="modal-footer">
                       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                       <button type="submit" class="btn btn-primary">
@@ -121,7 +110,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editModalLabel">Edit Coupon</h5>
+        <h5 class="modal-title" id="editModalLabel">Edit Pickup Point</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -139,13 +128,13 @@
         var table = $('.ytable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('coupon.index') }}",
+            ajax: "{{ route('pickuppoint.index') }}",
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex' },
-                { data: 'coupon_code', name: 'coupon_code' },
-                { data: 'coupon_amount', name: 'coupon_amount' },
-                { data: 'valid_date', name: 'valid_date' },
-                { data: 'status', name: 'status' },
+                { data: 'pickup_point_name', name: 'pickup_point_name' },
+                { data: 'pickup_point_address', name: 'pickup_point_address' },
+                { data: 'pickup_point_phone', name: 'pickup_point_phone' },
+                { data: 'pickup_point_phone_two', name: 'pickup_point_phone_two' },
                 { data: 'action', name: 'action', orderable: false, searchable: false }
             ]
         });
@@ -153,7 +142,7 @@
         // Edit coupon
         $('body').on('click', '.edit', function() {
             let id = $(this).data('id');
-            $.get("coupon/" + id + "/edit", function(data) {
+            $.get("pickuppoint/" + id + "/edit", function(data) {
                 $('#edit-Modal .modal-body').html(data);
                 $('#edit-Modal').modal('show');
             });
@@ -172,7 +161,7 @@
                 data: request,
                 success: function(data) {
                   if (data.success) {
-                        toastr.success('Coupon updated successfully!');
+                        toastr.success('Pickup point updated successfully!');
                         $('#edit-form')[0].reset(); // Reset form fields
                         $('#edit-Modal').modal('hide'); // Close modal
                         $('.loading').addClass('d-none'); // Hide loading indicator
@@ -198,7 +187,7 @@
                 type: 'POST',
                 data: request,
                 success: function(data) {
-                    toastr.success('Coupon inserted successfully!');
+                    toastr.success('Pickup Point inserted successfully!');
                     $('#add-form')[0].reset(); // Reset form fields
                     $('#addModal').modal('hide'); // Close modal
                     $('.loading').addClass('d-none'); // Hide loading indicator
@@ -223,7 +212,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: 'coupon/' + id,
+                        url: 'pickuppoint/' + id,
                         type: 'DELETE',
                         data: {
                             _token: '{{ csrf_token() }}'
@@ -237,7 +226,7 @@
                         error: function(response) {
                             Swal.fire(
                                 'Error!',
-                                'There was an error deleting the coupon.',
+                                'There was an error deleting the Pickup point.',
                                 'error'
                             );
                         }

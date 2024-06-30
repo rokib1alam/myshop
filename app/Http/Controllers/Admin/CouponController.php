@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\coupon;
-use App\Models\warehouse;
 use Flasher\Toastr\Prime\ToastrInterface;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -59,7 +58,7 @@ class CouponController extends Controller
     public function store(Request $request)
     {
         coupon::newCoupons($request);
-        $this->toastr->success('Coupon Inserted successfully!');
+        // $this->toastr->success('Coupon Inserted successfully!');
         // return back();
         return response()->json(['success' => true, 'message' => 'Coupon inserted successfully!']);
     }
@@ -96,7 +95,7 @@ class CouponController extends Controller
     public function destroy(coupon $coupon)
     {
         coupon::deleteCoupons($coupon);
-        $this->toastr->success('coupon deleted successfully!');
+        // $this->toastr->success('coupon deleted successfully!');
         return response()->json(['success' => true, 'message' => 'Coupon deleted successfully!']);
     
     }

@@ -65,7 +65,7 @@
                 </li>
                 <li class="pc-item pc-hasmenu">
                     <a href="#!" class="pc-link">
-                        <span class="pc-micon"><i class="ti ti-settings"></i></span>
+                        <span class="pc-micon"><i class="ti ti-gift"></i></span>
                         <span class="pc-mtext">Offer</span>
                         <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
                     </a>
@@ -75,6 +75,18 @@
                         </li>
                         <li class="pc-item"><a class="pc-link"
                             href="{{route('website.index')}}">E Campaing</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="pc-item pc-hasmenu">
+                    <a href="#!" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-truck"></i></span>
+                        <span class="pc-mtext">Pickup Point</span>
+                        <span class="pc-arrow"><i data-feather="chevron-right"></i></span>
+                    </a>
+                    <ul class="pc-submenu">
+                        <li class="pc-item"><a class="pc-link"
+                            href="{{route('pickuppoint.index')}}">Pickup Point</a>
                         </li>
                     </ul>
                 </li>

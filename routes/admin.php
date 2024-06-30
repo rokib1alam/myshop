@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\CategorieController;
 use App\Http\Controllers\Admin\ChildcategorieController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\PickupController;
 use App\Http\Controllers\Admin\SeoController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SmtpController;
@@ -34,6 +35,8 @@ Route::middleware(['auth', IsAdmin::class])->group(function() {
     Route::resource('brand', BrandController::class)->except(['show', 'create']);
     Route::resource('warehouse', WarehouseController::class)->except(['show', 'create']);
     Route::resource('coupon', CouponController::class)->except(['show', 'create']);
+    Route::resource('pickuppoint', PickupController::class)->except(['show', 'create']);
+
     //Setting Route
     Route::prefix('setting')->group(function () {
         Route::resource('seo', SeoController::class)->only(['index', 'update']);
