@@ -74,7 +74,7 @@
                             href="{{route('product.create')}}">New Product</a>
                         </li>
                         <li class="pc-item"><a class="pc-link"
-                            href="{{route('website.index')}}">Manage Product</a>
+                            href="{{route('product.index')}}">Manage Product</a>
                         </li>
                     </ul>
                 </li>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\categorie;
+use App\Models\childcategorie;
 use Flasher\Toastr\Prime\ToastrInterface;
 use Illuminate\Http\Request;
 
@@ -83,4 +84,11 @@ class CategorieController extends Controller
         $this->toastr->success('Category deleted successfully!');
         return back();
     }
+ // Get Child Category
+ public function GetChildCategory ($id)
+ {
+    $data = childcategorie::where('subcategory_id', $id)->get();//where('subcategory_id', $id)->get()
+     return response()->json($data);
+ }
+
 }

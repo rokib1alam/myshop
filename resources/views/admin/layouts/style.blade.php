@@ -14,8 +14,7 @@
 <link rel="stylesheet" href="{{asset('/')}}admin/assets/css/style.css" id="main-style-link">
 <link rel="stylesheet" href="{{asset('/')}}admin/assets/css/style-preset.css">
 <link rel="stylesheet" href="{{asset('/')}}admin/assets/css/custom.css">
-<link rel="stylesheet" href="{{asset('/')}}admin/assets/css/plugins/sweetalert.css">
-<link rel="stylesheet" href="{{asset('/')}}admin/assets/css/plugins/sweetalert.css">
+{{-- <link rel="stylesheet" href="{{asset('/')}}admin/assets/css/plugins/sweetalert.css"> --}}
 <link rel="stylesheet" href="{{asset('/')}}admin/assets/css/plugins/toastr.min.css">
 <!-- data tables css -->
 <link rel="stylesheet" href="{{asset('/')}}admin/assets/css/plugins/dataTables.bootstrap5.min.css">
@@ -24,6 +23,9 @@
 <link rel="stylesheet" href="{{asset('/')}}admin/assets/css/plugins/dropzone.min.css">
 <link rel="stylesheet" href="{{asset('/')}}admin/assets/css/plugins/bootstrap-switch-button.min.css"><!-- [Page specific CSS] -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" integrity="sha512-In/+MILhf6UMDJU4ZhDL0R0fEpsp4D3Le23m6+ujDWXwl3whwpucJG1PEmI3B07nyJx+875ccs+yX2CqQJUxUw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<!-- Bootstrap Tags Input CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet">
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
 

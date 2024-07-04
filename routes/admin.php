@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminHomeController;
+use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategorieController;
 use App\Http\Controllers\Admin\ChildcategorieController;
@@ -37,8 +38,17 @@ Route::middleware(['auth', IsAdmin::class])->group(function() {
     Route::resource('warehouse', WarehouseController::class)->except(['show', 'create']);
     Route::resource('coupon', CouponController::class)->except(['show', 'create']);
     Route::resource('pickuppoint', PickupController::class)->except(['show', 'create']);
+    Route::resource('article', ArticleController::class)->except(['show', 'create']);
     Route::resource('product', ProductController::class);
-
+    // Custom route for notfeatured function
+    Route::get('product/active-featured/{id}', [ProductController::class, 'activefeatured']);
+    Route::get('product/not-featured/{id}', [ProductController::class, 'notfeatured']);
+    Route::get('product/active-deal/{id}', [ProductController::class, 'activedeal']);
+    Route::get('product/not-deal/{id}', [ProductController::class, 'notdeal']);
+    Route::get('product/active-status/{id}', [ProductController::class, 'activestatus']);
+    Route::get('product/not-status/{id}', [ProductController::class, 'notstatus']);
+    //Get Child Category
+    Route::get('/get-child-category/{id}', [CategorieController::class, 'GetChildCategory']);
     //Setting Route
     Route::prefix('setting')->group(function () {
         Route::resource('seo', SeoController::class)->only(['index', 'update']);

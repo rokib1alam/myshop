@@ -1,12 +1,14 @@
 @extends('layouts.admin')
 
 @section('admin_content')
-
+@php
+    $setting = App\Models\Setting::first();
+@endphp
     <div class="auth-main v1">
         <div class="bg-overlay bg-white"></div>
         <div class="auth-wrapper">
             <div class="auth-form"><a href="{{url('/')}}" class="d-block mt-5"><img
-                        src="{{asset('/')}}admin/assets/images/logo-white.svg" alt="img"></a>
+                        src="{{ url($setting->logo) }}" style="max-width: 180px; max-height: 70px;" alt="img"></a>
                 <div class="card mb-5 mt-3">
                     <div class="card-header bg-dark">
                         <h4 class="text-center text-white f-w-500 mb-0">Admin Login Panel</h4>
@@ -54,16 +56,14 @@
                             </div>
                         </form>
 
-                        <div class="card-footer border-top">
+                        <div class="border-top" style="padding: 5px;">
                             <div class="d-flex justify-content-between align-items-end">
                                 <div>
                                     @if (Route::has('password.request'))
                                         <a href="{{ route('password.request') }}" class="link-primary">{{ __('I forgot my password?') }}</a>
                                     @endif
                                 </div>
-                                <a href="#"><img
-                                        src="{{asset('/')}}admin/assets/images/logo-dark-sm.svg"
-                                        alt="img"></a>
+                                <a href="#"><img src="{{url($setting->favicon)}}" style="max-width: 20px; max-height: 20px;" alt="img" ></a> 
                             </div>
                         </div>
                     </div>

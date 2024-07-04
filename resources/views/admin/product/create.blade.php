@@ -25,7 +25,7 @@
             </div>
         </div><!-- [ breadcrumb ] end -->
         <!-- [ form-element ] start -->
-        <form role="form" action="{{ route('page.store') }}" method="post">
+        <form  action="{{ route('product.store') }}" method="post" id="add-form" enctype="multipart/form-data">
             @csrf
             <!-- [ Main Content ] start -->
             <div class="row">
@@ -40,7 +40,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Product Name <sup class="text-size-20 top-1">*</sup></label>
                                         <div class="input-group">
-                                            <input id="name" type="text" name="name" class="form-control" required>
+                                            <input id="product_name" type="text" name="product_name" value="{{old('product_name')}}" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Product Code <sup class="text-size-20 top-1">*</sup></label>
                                         <div class="input-group">
-                                            <input id="code" type="text" name="code" class="form-control" required placeholder="Product Code">
+                                            <input id="product_code" type="text" name="product_code" class="form-control" value="{{old('product_code')}}" required placeholder="Product Code">
                                         </div>
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Category/Subcategory <sup class="text-size-20 top-1">*</sup></label>
                                         <div class="input-group">
-                                            <select class="form-control" name="subcategory_id" id="" required>
+                                            <select class="form-control" name="subcategory_id" id="subcategory_id" required>
                                                 <option disabled="" selected="">==choose category==</option>
                                                 @foreach ($categories as $category)
                                                   <option value="{{$category->id}}" style="color: blue" disabled="">{{$category->category_name}}</option>
@@ -70,16 +70,18 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Child Category <sup class="text-size-20 top-1">*</sup></label>
                                         <div class="input-group">
-                                            <select name="childcategory_id" class="form-control">
-                                                <option value="1">1</option>
+                                            <select name="childcategory_id" id="childcategory_id" class="form-control">
+                                                <!-- Options will be dynamically loaded -->
                                             </select>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Brand <sup class="text-size-20 top-1">*</sup></label>
@@ -97,8 +99,8 @@
                                         <label class="form-label">Pickup Point</label>
                                         <div class="input-group">
                                             <select name="pickup_point_id" class="form-control">
-                                                @foreach ($pickpuppoints as $pickpuppoint)
-                                                    <option value="{{$pickpuppoint->id}}">{{$pickpuppoint->pickup_point_name}}</option>
+                                                @foreach ($pickuppoints as $pickuppoint)
+                                                    <option value="{{$pickuppoint->id}}">{{$pickuppoint->pickup_point_name}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -108,21 +110,21 @@
                                     <div class="mb-3">
                                         <label class="form-label">Unit <sup class="text-size-20 top-1">*</sup></label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="unit" required>
+                                            <input type="text" class="form-control" name="unit" value="{{old('unit')}}" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label class="form-label">Tags</label>
-                                        <input type="text" name="tags" class="form-control" data-role="tagsinput">
+                                        <input type="text" name="tags" class="form-control" value="{{old('tags')}}" data-role="tagsinput">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label class="form-label">Purchase Price</label>
                                         <div class="input-group">
-                                            <input id="purchase_price" type="text" name="purchase_price" class="form-control" placeholder="Purchase Price">
+                                            <input id="purchase_price" type="text" name="purchase_price" value="{{old('purchase_price')}}" class="form-control" placeholder="Purchase Price">
                                         </div>
                                     </div>
                                 </div>
@@ -130,7 +132,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Selling Price <sup class="text-size-20 top-1">*</sup></label>
                                         <div class="input-group">
-                                            <input id="selling_price" type="text" name="selling_price" class="form-control" required placeholder="Selling Price">
+                                            <input id="selling_price" type="text" name="selling_price" value="{{old('selling_price')}}" class="form-control" required placeholder="Selling Price">
                                         </div>
                                     </div>
                                 </div>
@@ -138,7 +140,7 @@
                                     <div class="mb-3">
                                         <label class="form-label">Discount Price</label>
                                         <div class="input-group">
-                                            <input id="page_title" type="text" name="page_title" class="form-control" placeholder="Page Title">
+                                            <input id="discount_price" type="text" name="discount_price" value="{{old('discount_price')}}" class="form-control" placeholder="Discount Price">
                                         </div>
                                     </div>
                                 </div>
@@ -158,21 +160,21 @@
                                     <div class="mb-3">
                                         <label class="form-label">Stock</label>
                                         <div class="input-group">
-                                            <input id="stock_quantity" type="text" name="stock_quantity" class="form-control" >
+                                            <input id="stock_quantity" type="text" name="stock_quantity" {{old('stock_quantity')}} class="form-control" >
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="demo-color-input" class="form-label">Color</label>
-                                            <input class="form-control form-control-color-picker" name="color" type="color" value="#5052FC" id="demo-color-input">
+                                            <label class="form-label">Color</label>
+                                            <input id="color" type="text" name="color" value="{{old('color')}}" class="form-control" data-role="tagsinput">
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="form-label">Size</label>
-                                            <input id="size" type="text" name="size" class="form-control" data-role="tagsinput">
+                                            <input id="size" type="text" name="size" value="{{old('size')}}" class="form-control" data-role="tagsinput">
                                         </div>
                                     </div>
                                 </div>
@@ -180,18 +182,16 @@
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label">Page Details</label>
-                                        <textarea class="form-control textarea" name="description" id="summernote" rows="4" ></textarea> 
+                                        <textarea class="form-control textarea" name="description" id="summernote" rows="4" >{{old('description')}}</textarea> 
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label class="form-label">Video Embed Code</label>
-                                        <textarea class="form-control textarea" name="video"  rows="2" ></textarea>
+                                        <textarea class="form-control textarea" name="video"  rows="2" >{{old('video')}}</textarea>
                                     </div>
                                 </div>
-                                {{-- <div class="col-md-12 text-end">
-                                    <button class="btn btn-primary">Create Page</button>
-                                </div> --}}
+
                             </div>
                         </div>
                     </div><!-- HTML Input Types -->
@@ -200,8 +200,8 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="brand_logo" class="col-form-label pt-0">Main Thumbnail  <sup class="text-size-20 text-denger">*</sup></label>
-                                <input type="file" class="dropify" data-height="200" name="brand_logo" />
+                                <label for=" thumbnail" class="col-form-label pt-0">Main Thumbnail  <sup class="text-size-20 text-denger">*</sup></label>
+                                <input type="file" class="dropify" data-height="200" name="thumbnail" />
                             </div>
                             <div class="form-group">
                                 <table class="table table-bordered" id="dynamicTable">
@@ -214,18 +214,23 @@
                             </div>
                             <div class="card p-4">
                                 <h6>Featured Product</h6>
-                                <input type="checkbox" id="switch_event" data-toggle="switchbutton" checked data-onstyle="primary"> 
+                                <input type="checkbox" name="featured" id="featured" value="1" data-toggle="switchbutton" checked data-onstyle="primary"> 
                             </div>
                             <div class="card p-4">
                                 <h6>Today Deal</h6>
-                                <input type="checkbox" id="switch_event" data-toggle="switchbutton" checked data-onstyle="primary"> 
+                                <input type="checkbox" name="today_deal" id="today_deal" value="1" data-toggle="switchbutton" checked data-onstyle="primary"> 
                             </div>
                             <div class="card p-4">
                                 <h6>Status</h6>
-                                <input type="checkbox" id="switch_event" data-toggle="switchbutton" checked data-onstyle="primary"> 
+                                <input type="checkbox" name="status" id="status" value="1" data-toggle="switchbutton" checked data-onstyle="primary"> 
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">
+                        Submit
+                    </button>
                 </div>
             </div>
             <!-- [ Main Content ] end -->
@@ -233,4 +238,23 @@
 
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#subcategory_id").change(function(){
+            var id = $(this).val();
+            // alert(id);
+            $.ajax({
+                url: "{{url("/get-child-category/")}}/" + id,
+                type: 'GET',
+                success: function(data) {
+                    $('select[name="childcategory_id"]').empty();
+                    $.each(data, function(key, data){
+                        $('select[name="childcategory_id"]').append('<option value="'+ data.id +'">'+ data.childcategory_name +'</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
 @endsection

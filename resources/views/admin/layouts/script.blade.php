@@ -1,9 +1,10 @@
 <script src="{{asset('/')}}admin/assets/js/plugins/apexcharts.min.js"></script>
 <script src="{{asset('/')}}admin/assets/js/pages/dashboard-ecommerce.js"></script><!-- [Page Specific JS] end -->
 <!-- Required Js -->
-<script src="{{asset('/')}}admin/assets/js/plugins/popper.min.js"></script>
+<script src="{{asset('/')}}admin/assets/js/plugins/popper.min.js"></script> 
 <script src="{{asset('/')}}admin/assets/js/plugins/simplebar.min.js"></script>
 <script src="{{asset('/')}}admin/assets/js/plugins/bootstrap.min.js"></script>
+
 <script src="{{asset('/')}}admin/assets/js/fonts/custom-font.js"></script>
 <script src="{{asset('/')}}admin/assets/js/pcoded.js"></script>
 <script src="{{asset('/')}}admin/assets/js/plugins/feather.min.js"></script>
@@ -30,6 +31,8 @@
 <script src="{{asset('/')}}admin/assets/js/plugins/bootstrap-switch-button.min.js"></script>
 <!-- Summernote -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
+<!-- Bootstrap Tags Input JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
 <script>
   $(document).ready(function() {
       $('#summernote').summernote({
@@ -76,6 +79,10 @@
        'colvis'
      ]
    });
+   //tags inputs
+   $(document).ready(function() {
+        $('input[data-role="tagsinput"]').tagsinput();
+    });
 
 </script>
 <script>
@@ -160,7 +167,9 @@
         });
     });
 </script>
-
+<script>
+  
+</script>
 <script>
     layout_change('light');
 </script>

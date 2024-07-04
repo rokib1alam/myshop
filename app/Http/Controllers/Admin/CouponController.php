@@ -95,7 +95,6 @@ class CouponController extends Controller
     public function destroy(coupon $coupon)
     {
         coupon::deleteCoupons($coupon);
-        // $this->toastr->success('coupon deleted successfully!');
         return response()->json(['success' => true, 'message' => 'Coupon deleted successfully!']);
     
     }
