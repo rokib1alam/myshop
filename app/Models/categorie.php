@@ -33,4 +33,8 @@ class categorie extends Model
     {
         $category->delete();
     }
+    public function subcategories()
+    {
+        return $this->hasMany(subcategorie::class, 'category_id', 'id');
+    }
 }

@@ -43,9 +43,9 @@ class childcategorie extends Model
         $childcategory->delete();
     }
     public function category(){
-        return $this->belongsTo(categorie::class);
+        return $this->belongsTo(categorie::class, 'category_id', 'id');
     }
     public function subcategory(){
-        return $this->belongsTo(subcategorie::class);
+        return $this->belongsTo(subcategorie::class, 'subcategory_id', 'id');
     }
 }

@@ -118,6 +118,7 @@ class Product extends Model
         $product->featured = $request->featured;
         $product->today_deal = $request->today_deal;
         $product->status = $request->status;
+        $product->product_slider = $request->product_slider;
         $product->admin_id = Auth::id();
         $product->date = date('d-m-y');
         $product->month = date('F');

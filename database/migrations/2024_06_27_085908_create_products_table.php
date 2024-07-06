@@ -37,6 +37,7 @@ return new class extends Migration
             $table->integer('featured')->nullable;
             $table->integer('today_deal')->nullable;
             $table->integer('status')->nullable;
+            $table->integer('product_slider')->nullable;
             $table->integer('admin_id')->nullable;
             $table->string('date')->nullable;
             $table->string('month')->nullable;

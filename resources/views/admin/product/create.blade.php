@@ -221,6 +221,10 @@
                                 <input type="checkbox" name="today_deal" id="today_deal" value="1" data-toggle="switchbutton" checked data-onstyle="primary"> 
                             </div>
                             <div class="card p-4">
+                                <h6>Slider Product</h6>
+                                <input type="checkbox" name="product_slider" id="product_slider" value="1" data-toggle="switchbutton" data-onstyle="primary"> 
+                            </div>
+                            <div class="card p-4">
                                 <h6>Status</h6>
                                 <input type="checkbox" name="status" id="status" value="1" data-toggle="switchbutton" checked data-onstyle="primary"> 
                             </div>
